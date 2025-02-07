@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+}
+
+body {
+  background: #6d411c;
+  color: white;
+  font-family: 'Hind Siliguri', sans-serif;
+  text-align: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: black;
+}
+
+.opciones {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.opciones span {
+  display: flex;
+  align-items: center;
+} 
+
+.notfound img {
+  width: 25%;
+}
+
+.activo,
+.noActivo {
+  color: white;
+  text-decoration: none;
+  padding-left: 15px;
+}
+
+.activo {
+  font-weight: bold;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+/* Navbar */
+.navbar {
+  background: #59412f;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .opciones {
+  display: flex;
+  gap: 20px;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  gap: 10px;
+  row-gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  /* background: none !important; */
+}
+
+.grid-columns-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gallery .photo {
+  cursor: pointer;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: left;
+  text-shadow: 0px 0px 15px black;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.gallery .photo:hover {
+  box-shadow: 0px 0px 2px 1px black;
+}
+
+.gallery .photo svg {
+  align-self: flex-end;
+}
+
+.p-3 {
+  padding: 30px;
+}
+
+/* Card */
+.card {
+  transition: all 0.3s;
+  border: 1px solid #ddd;
+  border-radius: 3%;
+  background-color: #eeddd2;
+  opacity: 0.7;
+}
+
+/* App Container */
+.App {
+  position: relative;
+  min-height: 100vh;
+  color: white;
+  overflow: auto;
+  font-family: "Maitree", serif;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.App::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/cafe_grano.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  z-index: -1;
+}
