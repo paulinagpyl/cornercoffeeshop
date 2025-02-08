@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/PlantaContext";
+import { useNavigate } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 
 const PlantaDetalle = () => {
   const { plantas, addCart } = useContext(Context);
   const { id } = useParams();
   const [plantaData, setPlantaData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (plantas.length > 0) { 
@@ -41,8 +43,9 @@ const PlantaDetalle = () => {
           <Button 
             variant="dark" 
             style={{ backgroundColor: "#8B4513", borderColor: "#8B4513" }}
-            onClick={() => addCart(plantaData)}>
-            Añadir al carrito
+            // onClick={() => addCart(plantaData)}>
+            onClick={() => navigate(`/`) }>
+            Volver a Corner Coffee Shop
           </Button>
         </Card.Body>
       </Card>

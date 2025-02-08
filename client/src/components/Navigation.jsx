@@ -65,7 +65,7 @@ const Navigation = () => {
 
   return (
     <nav className="navbar">
-      <span className="logo"> ☕Venta Café</span>
+      <span className="logo"> ☕Corner Coffee Shop</span>
       <div className="opciones">
         <span className="me-3">
           <Link to="/"> Inicio </Link>
