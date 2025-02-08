@@ -1,32 +1,49 @@
-import { useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/PlantaContext";
-import { Card, Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 const PlantaDetalle = () => {
   const { plantas, addCart } = useContext(Context);
   const { id } = useParams();
-  const navigate = useNavigate();
+  const [plantaData, setPlantaData] = useState(null);
 
-  // Buscar la planta según el ID
-  const planta = plantas.find((p) => p.id === parseInt(id));
+  useEffect(() => {
+    if (plantas.length > 0) { 
+      const foundPlanta = plantas.find((planta) => String(planta.id) === id);
+      setPlantaData(foundPlanta);
+    }
+  }, [id, plantas]);
 
-  if (!planta) {
+  if (!plantaData) {
     return <div>Cargando...</div>;
   }
 
   return (
-    <div className="container mt-5 d-flex justify-content-center">
-      <Card style={{ width: "24rem", textAlign: "center" }}>
-        <Card.Img variant="top" src={planta.img} />
-        <Card.Body>
-          <Card.Title>{planta.name.charAt(0).toUpperCase() + planta.name.slice(1)}</Card.Title>
-          <Card.Text><strong>Precio:</strong> ${planta.price}</Card.Text>
-          <Card.Text>{planta.detalle}</Card.Text>
-          <div className="d-flex justify-content-around">
-            <Button variant="success" onClick={() => addCart(planta)}>Añadir al Carrito</Button>
-            <Button variant="secondary" onClick={() => navigate(-1)}>Volver</Button>
-          </div>
+    <div className="planta-detalle-container p-3">
+      <Card className="card detalle-card" style={{ width: "100%", maxWidth: "900px", display: "flex", flexDirection: "row", margin: "0 auto" }}>
+        {/* Imagen del producto */}
+        <Card.Img className="photo" variant="top" src={plantaData.img} style={{ width: "40%", objectFit: "cover" }} />
+
+        {/* Detalles del producto */}
+        <Card.Body style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "20px" }}>
+          <Card.Title style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            {plantaData.name.charAt(0).toUpperCase() + plantaData.name.slice(1)}
+          </Card.Title>
+          <Card.Text style={{ marginBottom: "15px" }}>
+            <strong>Detalle:</strong> {plantaData.detalle}
+          </Card.Text>
+          <Card.Text style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+            <strong>Precio:</strong> {plantaData.price}
+          </Card.Text>
+
+          {/* Botón para añadir al carrito */}
+          <Button 
+            variant="dark" 
+            style={{ backgroundColor: "#8B4513", borderColor: "#8B4513" }}
+            onClick={() => addCart(plantaData)}>
+            Añadir al carrito
+          </Button>
         </Card.Body>
       </Card>
     </div>
