@@ -1,0 +1,73 @@
+[
+    {
+      "id": "C001",
+      "img": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg",
+      "name": "Espresso",
+      "detalle": "Un café concentrado con un sabor intenso y una capa de crema en la parte superior. Perfecto para los amantes del café fuerte.",
+      "price": 2500
+    },
+    {
+      "id": "C002",
+      "img": "https://images.pexels.com/photos/434213/pexels-photo-434213.jpeg",
+      "name": "Cappuccino",
+      "detalle": "Una deliciosa combinación de espresso, leche vaporizada y espuma de leche, ideal para quienes disfrutan de un café suave y cremoso.",
+      "price": 3500
+    },
+    {
+      "id": "C003",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/1200px-Caffe_Latte_at_Pulse_Cafe.jpg",
+      "name": "Latte",
+      "detalle": "Café espresso con abundante leche vaporizada y una ligera capa de espuma, perfecto para un sabor más suave.",
+      "price": 3800
+    },
+    {
+      "id": "C004",
+      "img": "https://www.somoselcafe.com.ar/img/novedades/47.jpg",
+      "name": "Americano",
+      "detalle": "Espresso diluido con agua caliente, logrando un café más suave pero con el mismo aroma y sabor característico.",
+      "price": 2800
+    },
+    {
+      "id": "C005",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIXWaHY615SvSCdABSBh9vTeiy1vLhYJLRkw&s",
+      "name": "Macchiato",
+      "detalle": "Un espresso con un toque de espuma de leche, ideal para quienes buscan un café fuerte con un ligero toque cremoso.",
+      "price": 3200
+    },
+    {
+      "id": "C006",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SjzEswviCV79VQ7SeTqSc7UkDXHZuW9JMw&s",
+      "name": "Moka",
+      "detalle": "Una deliciosa combinación de espresso, chocolate caliente y leche vaporizada, terminada con crema batida.",
+      "price": 4200
+    },
+    {
+      "id": "C007",
+      "img": "https://imag.bonviveur.com/flat-white.jpg",
+      "name": "Flat White",
+      "detalle": "Similar al latte pero con menos espuma y más leche vaporizada, brindando un sabor más intenso.",
+      "price": 3600
+    },
+    {
+      "id": "C008",
+      "img": "https://tiendaviaggio.com.ar/cdn/shop/articles/para-blog.jpg?v=1567779506",
+      "name": "Affogato",
+      "detalle": "Un postre-café con una bola de helado de vainilla cubierta con espresso caliente. Una delicia única.",
+      "price": 4500
+    },
+    {
+      "id": "C009",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr9c1CDFvq4AIUG6JDnrudPR3Q9pA7vuSJ1g&s",
+      "name": "Café Bombón",
+      "detalle": "Una deliciosa mezcla de espresso y leche condensada que ofrece un sabor dulce e intenso.",
+      "price": 3900
+    },
+    {
+      "id": "C010",
+      "img": "https://www.ocu.org/-/media/ocu/images/home/alimentacion/caf%C3%A9/caf%C3%A9/cold-brewed-coffee_800x450.jpg?rev=40bed042-763f-4556-8c52-36926a1571cf&hash=40F517CB57DEF29639479DBBB1060B45",
+      "name": "Cold Brew",
+      "detalle": "Café preparado en frío durante varias horas, logrando un sabor más suave y menos ácido.",
+      "price": 4300
+    }
+  ]
+  
