@@ -1,31 +1,30 @@
-import axios from "axios";
-// import Context from "../store/_Context";
-import { Context } from "../store/PlantaContext";
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ENDPOINT } from "../config/constans";
+import axios from 'axios'
+import { CoffeeContext } from '../store/CoffeeContext'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ENDPOINT } from '../config/constans'
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const { getDeveloper, setDeveloper } = useContext(Context);
+  const navigate = useNavigate()
+  const { getDeveloper, setDeveloper } = useContext(CoffeeContext)
 
   const getDeveloperData = () => {
-    const token = window.sessionStorage.getItem("token");
+    const token = window.sessionStorage.getItem('token')
     axios
       .get(ENDPOINT.users, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data: [user] }) => setDeveloper({ ...user }))
       .catch(({ response: { data: user } }) => {
-        console.error(data);
-        window.sessionStorage.removeItem("token");
-        setDeveloper(null);
-        navigate("/");
-      });
-  };
+        console.error(data)
+        window.sessionStorage.removeItem('token')
+        setDeveloper(null)
+        navigate('/')
+      })
+  }
 
-  useEffect(getDeveloperData, []);
+  useEffect(getDeveloperData, [])
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Bienvenid@ a tu cuenta de publicaciones</h1>
       {/* <h1>
         Bienvenido <span className='fw-bold'>{getDeveloper?.email}</span>
@@ -34,7 +33,7 @@ const Profile = () => {
         {getDeveloper?.rol} en {getDeveloper?.lenguage}
       </h3> */}
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

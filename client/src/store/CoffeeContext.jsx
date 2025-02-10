@@ -10,9 +10,9 @@ const CoffeeProvider = ({ children }) => {
   useEffect(() => {
     const getCoffee = async () => {
       try {
-        const response = await fetch('../utils/coffees.json')
+        const response = await fetch('http://localhost:5173/utils/coffees.json')
         const data = await response.json()
-        console.log(data)
+
         setCoffee(data)
       } catch (error) {
         console.error('Error al requerir café:', error)

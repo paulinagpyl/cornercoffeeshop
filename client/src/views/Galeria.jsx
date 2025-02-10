@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Card } from 'react-bootstrap'
 
 const Galeria = () => {
+  // eslint-disable-next-line no-unused-vars
   const { coffee, addCart } = useContext(CoffeeContext)
   const navigate = useNavigate()
 
@@ -18,9 +19,9 @@ const Galeria = () => {
 
   return (
     <div className='gallery grid-columns-4 p-3'>
-      {coffee.map((planta) => (
-        <Card className='card' style={{ width: '18rem', display: 'flex', flexDirection: 'column', height: '100%' }} key={planta.id}>
-          <Card.Img className='photo' variant='top' src={planta.img} />
+      {coffee.map((coffee) => (
+        <Card className='card' style={{ width: '18rem', display: 'flex', flexDirection: 'column', height: '100%' }} key={coffee.id}>
+          <Card.Img className='photo' variant='top' src={coffee.img} />
           <Card.Body style={{ flexGrow: 1 }}>
             <Card.Title>
               {coffee.name.charAt(0).toUpperCase() + coffee.name.slice(1)}

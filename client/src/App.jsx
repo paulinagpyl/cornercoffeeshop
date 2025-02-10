@@ -5,9 +5,9 @@ import Home from './views/Home'
 import Registro from './views/Register'
 import Login from './views/Login'
 import Perfil from './views/Profile'
-import Gallery from './views/Gallery'
+import CoffeeDetail from './views/CoffeeDetail'
 import NotFound from './views/NotFound'
-import PlantaDetalle from './views/PlantaDetalle'
+import Galeria from './views/Galeria'
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         />
         <Route
           path='/catalogo'
-          element={<Gallery />}
+          element={<Galeria />}
         />
         <Route
           path='/registrarse'
@@ -40,7 +40,7 @@ const App = () => {
         />
         <Route
           path='/plantas/:id'
-          element={<PlantaDetalle />}
+          element={<CoffeeDetail />}
         />
 
       </Routes>
