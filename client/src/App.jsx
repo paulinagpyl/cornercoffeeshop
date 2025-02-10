@@ -8,6 +8,7 @@ import Perfil from './views/Profile'
 import CoffeeDetail from './views/CoffeeDetail'
 import NotFound from './views/NotFound'
 import Galeria from './views/Galeria'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         />
 
       </Routes>
+      <Footer />
     </div>
   )
 }

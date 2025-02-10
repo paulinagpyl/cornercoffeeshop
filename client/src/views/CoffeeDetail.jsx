@@ -4,6 +4,7 @@ import { CoffeeContext } from '../store/CoffeeContext'
 import { Button, Card } from 'react-bootstrap'
 
 const CoffeeDetail = () => {
+  // eslint-disable-next-line no-unused-vars
   const { coffee, addCart } = useContext(CoffeeContext)
   const { id } = useParams()
   const [coffeeData, setCoffeeData] = useState(null)
