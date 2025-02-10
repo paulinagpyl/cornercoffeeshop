@@ -25,6 +25,7 @@
     "apoyo-desafio-soft-jobs": "file:",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.2",
+    "cornercoffeeshop": "file:",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.2.0",
