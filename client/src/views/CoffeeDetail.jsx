@@ -4,17 +4,17 @@ import { CoffeeContext } from '../store/CoffeeContext'
 import { Button, Card } from 'react-bootstrap'
 
 const CoffeeDetail = () => {
-  const { coffees, addCart } = useContext(CoffeeContext)
+  const { coffee, addCart } = useContext(CoffeeContext)
   const { id } = useParams()
   const [coffeeData, setCoffeeData] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (coffees.length > 0) {
-      const foundCoffee = coffees.find((coffee) => String(coffee.id) === id)
+    if (coffee.length > 0) {
+      const foundCoffee = coffee.find((coffee) => String(coffee.id) === id)
       setCoffeeData(foundCoffee)
     }
-  }, [id, coffees])
+  }, [id, coffee])
 
   if (!coffeeData) {
     return <div>Cargando...</div>
