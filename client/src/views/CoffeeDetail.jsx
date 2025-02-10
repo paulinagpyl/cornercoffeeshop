@@ -47,13 +47,13 @@ const CoffeeDetail = () => {
           >
             Volver a Corner Coffee Shop
           </Button>
-          <Button
+          {/* <Button
             variant='dark'
             style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}
             onClick={() => addCart(coffeeData)}
           >
             agregar
-          </Button>
+          </Button> */}
         </Card.Body>
       </Card>
     </div>
