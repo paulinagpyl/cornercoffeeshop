@@ -3,20 +3,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const Footer = () => {
   return (
-    <footer className='bg-dark text-light py-4'>
+    <footer className='text-light py-4'>
       <div className='container'>
         <div className='row'>
           <div className='col-md-4'>
-            <h5>About Us</h5>
+            <h5>Sobre nosotros</h5>
             <p>
-              We are a small pizzeria dedicated to bringing you the best pizzas with the freshest ingredients.
+              Somos una comunidad de amantes del café
             </p>
           </div>
           <div className='col-md-4'>
             <h5>Contact Us</h5>
             <ul className='list-unstyled'>
               <li>
-                <a href='mailto:info@pizzeria.com' className='text-light'>info@pizzeria.com</a>
+                <a href='mailto:info@cornercoffeeshopcom' className='text-light'>info@cornercoffeeshopcom</a>
               </li>
               <li>
                 <a href='tel:+1234567890' className='text-light'>+123 456 7890</a>
@@ -45,7 +45,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className='text-center mt-4'>
-          <p>&copy; {new Date().getFullYear()} Pizzeria Mamma Mia. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Corner Coffee Shop ☕ . All rights reserved.</p>
         </div>
       </div>
     </footer>
