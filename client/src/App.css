@@ -68,6 +68,10 @@ h1 {
   gap: 20px;
 }
 
+.footer{
+  background: #59412f;
+}
+
 /* Gallery */
 .gallery {
   display: grid;
