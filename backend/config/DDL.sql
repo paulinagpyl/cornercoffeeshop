@@ -22,7 +22,7 @@ CREATE TABLE usuarios (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password TEXT NOT NULL,
+    password  VARCHAR(60)   NOT NULL,
     rol VARCHAR(50) NOT NULL CHECK (rol IN ('admin', 'usuario', 'editor'))
 );
 
