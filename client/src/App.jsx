@@ -9,6 +9,7 @@ import CoffeeDetail from './views/CoffeeDetail'
 import NotFound from './views/NotFound'
 import Galeria from './views/Galeria'
 import Footer from './components/Footer'
+import Header from './views/Header'
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
       <Routes>
         <Route
           path='/'
-          element={<Home />}
+          element={<Header />}
         />
         <Route
           path='/catalogo'

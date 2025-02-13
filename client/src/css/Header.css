@@ -1,0 +1,12 @@
+body {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  /* Hero Section */
+  
+  #Hero-Section {
+    background-image: url("/public/cafe_grano.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+  }
