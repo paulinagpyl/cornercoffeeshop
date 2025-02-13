@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/Header.css'
 
-export const Header = () => {
+const Header = () => {
   return (
     <div>
       <header id='Hero-Section' className='text-light text-end py-5 mt-5'>
@@ -29,3 +29,5 @@ export const Header = () => {
     </div>
   )
 }
+
+export default Header
