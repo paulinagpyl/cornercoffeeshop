@@ -35,7 +35,7 @@ const Navigation = () => {
           <Nav className='navbar'>
             <div>
               <NavLink to='/catalogo' className={validateRoot}>
-                Catalogo
+                Catálogo
               </NavLink>
             </div>
             <div>

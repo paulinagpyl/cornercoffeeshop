@@ -1,7 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../css/Header.css'
 
 const Header = () => {
+  const navigate = useNavigate()  // Usar useNavigate para manejar la navegación
+
+  const irAlCatalogo = () => {
+    navigate('/catalogo')
+  }
+
   return (
     <div>
       <header id='Hero-Section' className='text-light text-end py-5 mt-5'>
@@ -16,7 +23,7 @@ const Header = () => {
               <strong>— Sherlock Holmes</strong>
             </p>
             <div className='mb-5 pb-5'>
-              <button className='btn btn-lg btn-outline-secondary me-4'>
+              <button className='btn btn-lg btn-outline-secondary me-4' onClick={irAlCatalogo}>
                 Catálogo
               </button>
               <button className='btn btn-lg btn-secondary text-light'>
