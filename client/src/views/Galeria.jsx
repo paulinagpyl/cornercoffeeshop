@@ -35,10 +35,20 @@ const Galeria = () => {
               style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}
               onClick={() => {
                 console.log('ID de café seleccionado:', coffee.id)
-                navigate(`/plantas/${coffee.id}`)
+                navigate(`/cafes/${coffee.id}`)
               }}
             >
               Ver detalle
+            </Button>
+            <Button
+              variant='dark'
+              style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}
+              onClick={() => {
+                console.log('Café agregado al carrito:', coffee.name)
+                addCart(coffee)
+              }}
+            >
+              Agregar al carrito
             </Button>
           </div>
         </Card>

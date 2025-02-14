@@ -41,7 +41,7 @@ const App = () => {
           element={<NotFound />}
         />
         <Route
-          path='/plantas/:id'
+          path='/cafes/:id'
           element={<CoffeeDetail />}
         />
 
