@@ -10,6 +10,7 @@ import NotFound from './views/NotFound'
 import Galeria from './views/Galeria'
 import Footer from './components/Footer'
 import Header from './views/Header'
+import AuthGuard from './guard/AuthGuard'
 
 const App = () => {
   return (
@@ -26,15 +27,21 @@ const App = () => {
         />
         <Route
           path='/registrarse'
-          element={<Registro />}
+          element={
+            <AuthGuard requiresAuth={false}><Registro /></AuthGuard>}
         />
         <Route
           path='/login'
-          element={<Login />}
+          element={
+            <AuthGuard requiresAuth={false}><Registro /></AuthGuard>}
         />
         <Route
           path='/perfil'
-          element={<Perfil />}
+          element={
+            <AuthGuard requiresAuth>
+              <Perfil />
+            </AuthGuard>
+          }
         />
         <Route
           path='/*'
