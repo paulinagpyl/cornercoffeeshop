@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Header from './views/Header'
 import AuthGuard from './guard/AuthGuard'
 import Register from './views/Register'
+import Welcome from './views/Welcome'
 
 const App = () => {
   return (
@@ -54,7 +55,10 @@ const App = () => {
           path='/cafes/:id'
           element={<CoffeeDetail />}
         />
-
+        <Route
+          path='/Welcome'
+          element={<Welcome />}
+        />
       </Routes>
       <Footer />
     </div>

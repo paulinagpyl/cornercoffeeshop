@@ -10,7 +10,7 @@ export const create = ({ nombre, descripcion, precio, imagen_url }) =>
 export const updateById = (id, { nombre, descripcion, precio, imagen_url }) =>
   db('UPDATE productos SET nombre = $2, descripcion=$3, precio = $4, imagen_url = $5 WHERE producto_id = $1 RETURNING *;', [id, nombre,descripcion, precio, imagen_url])
 
-export const deleteById = (id) => db('DELETE FROM productos WHERE productos_id = $1 RETURNING *;', [id])
+export const deleteById = (id) => db('DELETE FROM productos WHERE producto_id = $1 RETURNING *;', [id])
 
 
 // CREATE TABLE productos (
