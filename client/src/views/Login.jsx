@@ -32,7 +32,7 @@ const Login = () => {
         window.sessionStorage.setItem('token', data.token)
         window.alert('Usuario identificado con éxito 😀.')
         setDeveloper({})
-        navigate('/perfil')
+        navigate("/perfil")
       })
       .catch(({ response: { data } }) => {
         console.error(data)
