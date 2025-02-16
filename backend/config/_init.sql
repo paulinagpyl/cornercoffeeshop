@@ -1,4 +1,4 @@
-CREATE DATABASE coffeshop;
+CREATE DATABASE cornercoffeeshop;
 
 CREATE TABLE productos (
     productos_id SERIAL,
