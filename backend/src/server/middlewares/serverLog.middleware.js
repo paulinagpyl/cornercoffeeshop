@@ -1,4 +1,4 @@
-export const serverLog = (req, res, next) => {
+const serverLog = (req, res, next) => {
   console.log({
     method: req.method,
     body: req.body,
@@ -7,3 +7,5 @@ export const serverLog = (req, res, next) => {
   })
   next()
 }
+
+module.exports = { serverLog }
