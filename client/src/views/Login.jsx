@@ -5,7 +5,8 @@ import { ENDPOINT } from '../config/constans'
 import { CoffeeContext } from '../store/CoffeeContext'
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-const initialForm = { email: 'docente@desafiolatam.com', password: '123456' }
+// const initialForm = { email: 'docente@desafiolatam.com', password: '123456' }
+const initialForm = { email: '', password: '' }
 
 const Login = () => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const Login = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-
+    console.log("Holaaaa", user.email, user.password )
     if (!user.email.trim() || !user.password.trim()) {
       return window.alert('Email y password obligatorias.')
     }
@@ -25,7 +26,7 @@ const Login = () => {
     if (!emailRegex.test(user.email)) {
       return window.alert('El formato del email no es correcto!')
     }
-
+    
     axios
       .post(ENDPOINT.login, user)
       .then(({ data }) => {
@@ -72,6 +73,7 @@ const Login = () => {
       <button type='submit' className='btn btn-light mt-3 app'>
         Iniciar Sesión
       </button>
+
     </form>
   )
 }

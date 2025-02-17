@@ -9,7 +9,7 @@ const initialForm = {
   apellido: '',
   email: '',
   pass: '',
-  rol: 'Seleccione un rol'
+  rol: 'usuario'
 }
 
 const Register = () => {
@@ -21,7 +21,8 @@ const Register = () => {
   const handleForm = (event) => {
     event.preventDefault() // evita que se precargue el formulario de nuevo
 
-    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() || user.rol === 'Seleccione un rol' ) 
+    // if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() || user.rol === 'Seleccione un rol' ) 
+    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() ) 
     {
       return window.alert('Todos los campos son obligatorios.')
     }
@@ -92,7 +93,7 @@ const Register = () => {
           placeholder='Password'
         />
       </div>
-      <div className='form-group mt-1 '>
+      {/* <div className='form-group mt-1 '>
         <label>Rol</label>
         <select
           defaultValue={user.rol}
@@ -104,7 +105,7 @@ const Register = () => {
           <option value='admin'>Administrador</option>
           <option value='usuario'>Cliente</option>
         </select>
-      </div>
+      </div> */}
       <button type='submit' className='btn btn-light mt-3'>Registrarme</button>
     </form>
   )

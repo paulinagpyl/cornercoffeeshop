@@ -11,9 +11,9 @@ export const register = (req, res) => sql.register(req.body)
 
 export const login = (req, res) => sql.login(req.body)
   .then((result) => {
-    console.log('pasa', req.body)
+    // console.log('pasa', req.body)
     if (result.length === 0) {
-      console.log('entra largo cero');
+      console.log('entra largo cero', {result});
       res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña no existen' });
       return;
     }

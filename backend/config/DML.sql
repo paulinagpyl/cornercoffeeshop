@@ -16,9 +16,9 @@ INSERT INTO productos (nombre, descripcion, precio, imagen_url) VALUES
 -- Insertar usuarios
 INSERT INTO usuarios (nombre, apellido, email, pass, rol) VALUES
 ('Andrea', 'González', 'andrea.gonzalez@example.com', 'admin123', 'admin'),
-('Carlos', 'Pérez', 'carlos.perez@example.com', 'user123', 'usuario'),
-('María', 'López', 'maria.lopez@example.com', 'editor123', 'editor'),
-('Javier', 'Ramírez', 'javier.ramirez@example.com', 'user456', 'usuario'),
+('Carlos', 'Pérez', 'carlos.perez@example.com', 'user123', 'cliente'),
+('María', 'López', 'maria.lopez@example.com', 'editor123', 'cliente'),
+('Javier', 'Ramírez', 'javier.ramirez@example.com', 'user456', 'cliente'),
 ('Fernanda', 'Torres', 'fernanda.torres@example.com', 'admin456', 'admin'),
 ('Lucía', 'Martínez', 'lucia.martinez@example.com', 'editor456', 'editor'),
 ('Pedro', 'Sánchez', 'pedro.sanchez@example.com', 'user789', 'usuario'),
