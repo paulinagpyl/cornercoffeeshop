@@ -1,4 +1,4 @@
-import pg from 'pg'
+const pg = require('pg')
 
 const { Pool } = pg
 
@@ -18,4 +18,4 @@ const db = (query, values) => pool
   .then(({ rows }) => rows)
   .catch((error) => error)
 
-export default db
+module.exports = db

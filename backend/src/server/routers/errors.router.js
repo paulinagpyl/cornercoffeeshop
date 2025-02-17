@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import * as errorsController from '../controllers/errors.controller.js'
+const express = require('express')
+const errorsController = require('../controllers/errors.controller.js')
 
-const router = Router()
+const router = express.Router()
 
 router.all('*', errorsController.notFound)
 
-export default router
+module.exports = router
