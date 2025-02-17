@@ -1,2 +1,2 @@
-import 'dotenv/config'
-import './src/server/app.js'
+require('dotenv/config');
+require('./src/server/app.js');

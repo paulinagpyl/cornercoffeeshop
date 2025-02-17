@@ -5,7 +5,7 @@
   "description": "Backen CornerCofeeShop",
   "main": "index.js",
   "license": "MIT",
-  "type": "module",
+  
   "eslintConfig": {
     "extends": [
       "./node_modules/standard/eslintrc.json"
