@@ -21,12 +21,11 @@ const Register = () => {
   const handleForm = (event) => {
     event.preventDefault() // evita que se precargue el formulario de nuevo
 
-    // if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() || user.rol === 'Seleccione un rol' ) 
-    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() ) 
-    {
+    // if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() || user.rol === 'Seleccione un rol' )
+    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim()) {
       return window.alert('Todos los campos son obligatorios.')
     }
-    if (!emailRegex.test(user.email)) {return window.alert('El formato del email no es correcto!')}
+    if (!emailRegex.test(user.email)) { return window.alert('El formato del email no es correcto!') }
 
     axios.post(ENDPOINT.users, user)
       .then(() => {
