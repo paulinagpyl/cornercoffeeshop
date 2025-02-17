@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-    console.log("Holaaaa", user.email, user.password )
+    console.log('Holaaaa', user.email, user.password)
     if (!user.email.trim() || !user.password.trim()) {
       return window.alert('Email y password obligatorias.')
     }
@@ -26,14 +26,14 @@ const Login = () => {
     if (!emailRegex.test(user.email)) {
       return window.alert('El formato del email no es correcto!')
     }
-    
+
     axios
       .post(ENDPOINT.login, user)
       .then(({ data }) => {
         window.sessionStorage.setItem('token', data.token)
         window.alert('Usuario identificado con éxito 😀.')
         setDeveloper({})
-        navigate("/perfil")
+        navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
         console.error(data)
