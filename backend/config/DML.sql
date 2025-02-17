@@ -1,4 +1,8 @@
--- SELECT * FROM usuarios;
+SELECT * FROM usuarios;
+
+SELECT * FROM PRODUCTOS;
+
+SELECT * FROM VENTAS;
 
 -- Insertar productos
 INSERT INTO productos (nombre, descripcion, precio, imagen_url) VALUES

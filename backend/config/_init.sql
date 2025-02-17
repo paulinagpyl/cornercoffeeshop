@@ -1,3 +1,4 @@
+-- Active: 1730683703648@@127.0.0.1@5432@cornercoffeeshop
 CREATE DATABASE cornercoffeeshop;
 
 CREATE TABLE productos (
