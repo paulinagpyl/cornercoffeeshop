@@ -1,9 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { Link, useNavigate, NavLink } from 'react-router-dom'
-import { Container, Nav } from 'react-bootstrap'
-
-// import Context from "../store/_Context";
-// import { Context } from '../store/PlantaContext'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { CoffeeContext } from '../store/CoffeeContext'
 
 const Navigation = () => {
@@ -31,49 +28,49 @@ const Navigation = () => {
   const isLogin = () => {
     if (!getDeveloper) {
       return (
-        <Container>
-          <Nav className='navbar'>
-            <div>
-              <NavLink to='/catalogo' className={validateRoot}>
-                Catálogo
-              </NavLink>
-            </div>
-            <div>
-              <NavLink to='/registrarse' className={validateRoot}>
-                {' '}
-                Registrarse
-              </NavLink>
-              <NavLink to='/login' className={validateRoot}>
-                Iniciar Sesión
-              </NavLink>
-            </div>
-          </Nav>
-        </Container>
+        <Nav className='ml-auto'>
+          <Nav.Link as={NavLink} to='/catalogo' className={validateRoot}>
+            Catálogo
+          </Nav.Link>
+          <Nav.Link as={NavLink} to='/registrarse' className={validateRoot}>
+            Registrarse
+          </Nav.Link>
+          <Nav.Link as={NavLink} to='/login' className={validateRoot}>
+            Iniciar Sesión
+          </Nav.Link>
+        </Nav>
       )
     }
 
     return (
-      <>
-        <Link to='/perfil' className='btn m-1 btn-light'>
+      <Nav className='ml-auto'>
+        <Nav.Link as={Link} to='/perfil' className='btn btn-light m-1'>
           Mi Perfil
-        </Link>
-        <button onClick={logout} className='btn btn-danger'>
+        </Nav.Link>
+        <Nav.Link as='button' onClick={logout} className='btn btn-danger'>
           Salir
-        </button>
-      </>
+        </Nav.Link>
+      </Nav>
     )
   }
 
   return (
-    <nav className='navbar'>
-      <span className='logo'> ☕Corner Coffee Shop</span>
-      <div className='opciones'>
-        <span className='me-3'>
-          <Link to='/'> Inicio </Link>
-        </span>
-        {isLogin()}
-      </div>
-    </nav>
+    <Navbar bg='light' expand='lg'>
+      <Container>
+        <Navbar.Brand as={Link} to='/'>
+          ☕ Corner Coffee Shop
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='navbar-nav' />
+        <Navbar.Collapse id='navbar-nav'>
+          <Nav className='me-auto'>
+            <Nav.Link as={Link} to='/'>
+              Inicio
+            </Nav.Link>
+          </Nav>
+          {isLogin()}
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
