@@ -26,18 +26,18 @@ const Login = () => {
     if (!emailRegex.test(user.email)) {
       return window.alert('El formato del email no es correcto!')
     }
-    console.log(user);  
+    console.log(user)
     axios
       .post(ENDPOINT.login, user)
       .then(({ data }) => {
-        console.log('data', data);
+        console.log('data', data)
         window.sessionStorage.setItem('token', data.token)
         window.alert('Usuario identificado con éxito 😀.')
         setDeveloper({})
         navigate('/perfil')
       })
       .catch(({ response: { data } }) => {
-        console.error('data',data)
+        console.error('data', data)
         window.alert(`${data.message} 🙁.`)
       })
   }

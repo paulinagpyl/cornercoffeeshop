@@ -55,7 +55,7 @@ const App = () => {
           path='/cafes/:id'
           element={<CoffeeDetail />}
         />
- 
+
       </Routes>
       <Footer />
     </div>
