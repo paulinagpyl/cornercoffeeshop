@@ -3,31 +3,35 @@ import { useNavigate } from 'react-router-dom'
 import '../css/Header.css'
 
 const Header = () => {
-  const navigate = useNavigate()  // Usar useNavigate para manejar la navegación
+  const navigate = useNavigate()
 
   const irAlCatalogo = () => {
     navigate('/catalogo')
   }
 
+  const irALogin = () => {
+    navigate('/login')
+  }
+
   return (
     <div>
-      <header id='Hero-Section' className='text-light text-end py-5 mt-5'>
+      <header id='Hero-Section' className='text-end py-5'>
         <div className='container'>
           <div className='ms-auto col-12 col-md-7'>
-            <h1 className='display-4 fw-bold my-5 text-light'>
+            <h1 className='display-4 fw-bold my-5 title-coffee'>
               Corner Coffee Shop <br /> <span>Amantes del café</span>
             </h1>
-            <p className='my-5 text-light fw-bold'>
+            <p className='my-5 quote-coffee'>
               “No hay nada como una taza de café para estimular las células del cerebro.”
               <br />
               <strong>— Sherlock Holmes</strong>
             </p>
             <div className='mb-5 pb-5'>
-              <button className='btn btn-lg btn-outline-secondary me-4' onClick={irAlCatalogo}>
-                Catálogo
+              <button className='btn btn-lg btn-brown' onClick={irALogin}>
+                Iniciar Sesión
               </button>
-              <button className='btn btn-lg btn-secondary text-light'>
-                Contacto
+              <button className='btn btn-lg btn-outline-brown me-4' onClick={irAlCatalogo}>
+                Catálogo
               </button>
             </div>
           </div>

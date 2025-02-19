@@ -1,12 +1,48 @@
+:root {
+  --dark-brown: #4A2E2C;
+  --medium-brown: #6F513A;
+  --light-brown: #916A53;
+  --soft-cream: #FFFCD4;
+  --warm-beige: #FFF0BF;
+}
+
 body {
-    font-family: "Raleway", sans-serif;
-  }
-  
-  /* Hero Section */
-  
-  #Hero-Section {
-    background-image: url("/cafe_grano.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: left;
-  }
+  font-family: "Raleway", sans-serif;
+  background-color: var(--soft-cream);
+  color: var(--dark-brown);
+}
+
+/* Hero Section */
+#Hero-Section {
+  background-image: url("/cafe_grano.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}
+
+/* Button Styles */
+.btn-brown {
+  background-color: var(--medium-brown);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+.btn-brown:hover {
+  background-color: var(--dark-brown);
+}
+
+.btn-outline-brown {
+  border: 2px solid var(--medium-brown);
+  color: var(--medium-brown);
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+.btn-outline-brown:hover {
+  background-color: var(--medium-brown);
+  color: white;
+}
