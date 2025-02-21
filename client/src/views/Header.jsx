@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../css/Header.css'
+import '../css/CornerCoffeeShop.css'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <div>
       <header id='Hero-Section' className='text-end py-5'>
-        <div className='container'>
+        <div className='containerHome'>
           <div className='ms-auto col-12 col-md-7'>
             <h1 className='display-4 fw-bold my-5 title-coffee'>
               Corner Coffee Shop <br /> <span>Amantes del café</span>
