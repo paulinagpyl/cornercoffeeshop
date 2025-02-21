@@ -29,10 +29,10 @@ const Login = () => {
     }
 
     try {
-      console.log('📩 Enviando datos:', user)
+      // console.log('📩 Enviando datos:', user)
 
       const { data } = await axios.post(ENDPOINT.login, user)
-      console.log('✅ Respuesta del servidor:', data)
+      // console.log('✅ Respuesta del servidor:', data)
 
       if (data.token) {
         window.sessionStorage.setItem('token', data.token)
