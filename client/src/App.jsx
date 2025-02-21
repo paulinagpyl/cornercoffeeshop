@@ -1,8 +1,6 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation'
-import Home from './views/Home'
-import Registro from './views/_Register'
 import Login from './views/Login'
 import Perfil from './views/Profile'
 import CoffeeDetail from './views/CoffeeDetail'
@@ -12,7 +10,6 @@ import Footer from './components/Footer'
 import Header from './views/Header'
 import AuthGuard from './guard/AuthGuard'
 import Register from './views/Register'
-
 
 const App = () => {
   return (
