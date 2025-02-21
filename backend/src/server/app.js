@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+require('dotenv').config()
 
 const { serverLog } = require('./middlewares/serverLog.middleware.js')
 const { usuariosRouter, productosRouter, errors } = require('./routers/index.js')
