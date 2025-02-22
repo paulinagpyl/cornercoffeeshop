@@ -59,7 +59,7 @@ const UserProvider = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch('http://localhost:3000/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

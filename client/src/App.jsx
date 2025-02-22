@@ -2,7 +2,6 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Login from './views/Login'
-import Perfil from './views/Profile'
 import CoffeeDetail from './views/CoffeeDetail'
 import NotFound from './views/NotFound'
 import Galeria from './views/Galeria'
@@ -10,6 +9,7 @@ import Footer from './components/Footer'
 import Header from './views/Header'
 import AuthGuard from './guard/AuthGuard'
 import Register from './views/Register'
+import Profile from './views/Profile'
 
 const App = () => {
   return (
@@ -37,11 +37,11 @@ const App = () => {
         //     <AuthGuard requiresAuth={false}><Registro /></AuthGuard>}
         />
         <Route
-          path='/perfil'
+          path='/profile'
           element={
-            <AuthGuard requiresAuth>
-              <Perfil />
-            </AuthGuard>
+            // <AuthGuard requiresAuth>
+            <Profile />
+            // </AuthGuard>
           }
         />
         <Route
