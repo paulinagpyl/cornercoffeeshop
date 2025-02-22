@@ -1,9 +1,12 @@
-import React from 'react'
+/* eslint-disable multiline-ternary */
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 import '../css/CornerCoffeeShop.css'
 
 const Header = () => {
   const navigate = useNavigate()
+  const { token } = useContext(UserContext) // Verificar si el usuario está autenticado
 
   const irAlCatalogo = () => {
     navigate('/catalogo')
@@ -11,6 +14,10 @@ const Header = () => {
 
   const irALogin = () => {
     navigate('/login')
+  }
+
+  const irAlPerfil = () => {
+    navigate('/profile')
   }
 
   return (
@@ -27,13 +34,29 @@ const Header = () => {
               <strong>— Sherlock Holmes</strong>
             </p>
             <div className='mb-5 pb-5'>
-              <button className='btn btn-lg btn-brown' onClick={irALogin}>
-                Iniciar Sesión
-              </button>
-              <button className='btn btn-lg btn-outline-brown me-4' onClick={irAlCatalogo}>
-                Catálogo
-              </button>
+              {token ? (
+                <>
+                  {/* Si el usuario está autenticado, muestra "Ir a Perfil" y "Catálogo" */}
+                  <button className='btn btn-lg btn-brown' onClick={irAlPerfil}>
+                    Ir a Perfil
+                  </button>
+                  <button className='btn btn-lg btn-outline-brown me-4' onClick={irAlCatalogo}>
+                    Catálogo
+                  </button>
+                </>
+              ) : (
+                <>
+                  {/* Si el usuario NO está autenticado, muestra "Iniciar Sesión" y "Catálogo" */}
+                  <button className='btn btn-lg btn-brown' onClick={irALogin}>
+                    Iniciar Sesión
+                  </button>
+                  <button className='btn btn-lg btn-outline-brown me-4' onClick={irAlCatalogo}>
+                    Catálogo
+                  </button>
+                </>
+              )}
             </div>
+
           </div>
         </div>
       </header>
