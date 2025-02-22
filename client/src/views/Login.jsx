@@ -1,8 +1,6 @@
-import axios from 'axios'
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ENDPOINT } from '../config/constans'
-import { CoffeeContext } from '../store/CoffeeContext'
+import { UserContext } from '../store/UserContext'
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: '', password: '' }
@@ -10,7 +8,7 @@ const initialForm = { email: '', password: '' }
 const Login = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(initialForm)
-  const { setDeveloper } = useContext(CoffeeContext)
+  const { login } = useContext(UserContext)
 
   // Maneja los cambios en los inputs
   const handleUser = (event) =>
@@ -29,24 +27,13 @@ const Login = () => {
     }
 
     try {
-      // console.log('📩 Enviando datos:', user)
+      await login(user.email, user.password) // Llamamos al contexto
 
-      const { data } = await axios.post(ENDPOINT.login, user)
-      // console.log('✅ Respuesta del servidor:', data)
-
-      if (data.token) {
-        window.sessionStorage.setItem('token', data.token)
-        window.alert('🎉 Usuario identificado con éxito.')
-        setDeveloper({})
-        navigate('/perfil')
-      } else {
-        window.alert('⚠️ No se recibió un token válido.')
-      }
+      window.alert('🎉 Usuario identificado con éxito.')
+      navigate('/profile') // Redirige al perfil
     } catch (error) {
       console.error('❌ Error en la autenticación:', error)
-
-      const message = error.response?.data?.message || 'Error desconocido en el login.'
-      window.alert(`🚫 ${message}`)
+      window.alert('🚫 Error en el inicio de sesión.')
     }
   }
 
