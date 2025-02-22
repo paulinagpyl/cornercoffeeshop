@@ -1,41 +1,47 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ENDPOINT } from '../config/constans'
+import { UserContext } from '../store/UserContext'
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = {
   nombre: '',
   apellido: '',
   email: '',
-  pass: '',
+  password: '',
+  confirmPassword: '',
   rol: 'usuario'
 }
 
 const Register = () => {
   const navigate = useNavigate()
+  const { register } = useContext(UserContext)
   const [user, setUser] = useState(initialForm)
 
-  const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value })
+  const handleUser = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value })
 
-  const handleForm = (event) => {
-    event.preventDefault() // evita que se precargue el formulario de nuevo
+  const handleForm = async (event) => {
+    event.preventDefault()
 
-    // if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim() || user.rol === 'Seleccione un rol' )
-    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.pass.trim()) {
-      return window.alert('Todos los campos son obligatorios.')
+    // Validaciones
+    if (!user.nombre.trim() || !user.apellido.trim() || !user.email.trim() || !user.password.trim() || !user.confirmPassword.trim()) {
+      return window.alert('⚠️ Todos los campos son obligatorios.')
     }
-    if (!emailRegex.test(user.email)) { return window.alert('El formato del email no es correcto!') }
+    if (!emailRegex.test(user.email)) {
+      return window.alert('⚠️ El formato del email no es correcto.')
+    }
+    if (user.password !== user.confirmPassword) {
+      return window.alert('⚠️ Las contraseñas no coinciden.')
+    }
 
-    axios.post(ENDPOINT.users, user)
-      .then(() => {
-        window.alert('Usuario registrado con éxito 😀.')
-        navigate('/login')
-      })
-      .catch(({ response: { data } }) => {
-        console.error(data)
-        window.alert(`${data.message} 🙁.`)
-      })
+    try {
+      await register(user.nombre, user.apellido, user.email, user.password, user.rol)
+      window.alert('🎉 Usuario registrado con éxito.')
+      navigate('/login')
+    } catch (error) {
+      console.error('❌ Error en el registro:', error)
+      window.alert('🚫 Error en el registro.')
+    }
   }
 
   useEffect(() => {
@@ -48,63 +54,26 @@ const Register = () => {
     <form onSubmit={handleForm} className='col-10 col-sm-6 col-md-3 m-auto mt-5 App'>
       <h1>Registrar nuevo usuario</h1>
       <hr />
-      <div className='form-group mt-1 '>
+      <div className='form-group mt-1'>
         <label>Nombre</label>
-        <input
-          value={user.nombre}
-          onChange={handleUser}
-          type='text'
-          name='nombre'
-          className='form-control'
-          placeholder='Enter nombre'
-        />
+        <input value={user.nombre} onChange={handleUser} type='text' name='nombre' className='form-control' placeholder='Ingrese su nombre' />
       </div>
-      <div className='form-group mt-1 '>
+      <div className='form-group mt-1'>
         <label>Apellido</label>
-        <input
-          value={user.apellido}
-          onChange={handleUser}
-          type='text'
-          name='apellido'
-          className='form-control'
-          placeholder='Enter apellido'
-        />
+        <input value={user.apellido} onChange={handleUser} type='text' name='apellido' className='form-control' placeholder='Ingrese su apellido' />
       </div>
-      <div className='form-group mt-1 '>
+      <div className='form-group mt-1'>
         <label>Email</label>
-        <input
-          value={user.email}
-          onChange={handleUser}
-          type='email'
-          name='email'
-          className='form-control'
-          placeholder='Enter email'
-        />
+        <input value={user.email} onChange={handleUser} type='email' name='email' className='form-control' placeholder='Ingrese su email' />
       </div>
-      <div className='form-group mt-1 '>
+      <div className='form-group mt-1'>
         <label>Contraseña</label>
-        <input
-          value={user.pass}
-          onChange={handleUser}
-          type='password'
-          name='pass'
-          className='form-control'
-          placeholder='Password'
-        />
+        <input value={user.password} onChange={handleUser} type='password' name='password' className='form-control' placeholder='Ingrese su contraseña' />
       </div>
-      {/* <div className='form-group mt-1 '>
-        <label>Rol</label>
-        <select
-          defaultValue={user.rol}
-          onChange={handleUser}
-          name='rol'
-          className='form-select'
-        >
-          <option disabled>Seleccione un rol</option>
-          <option value='admin'>Administrador</option>
-          <option value='usuario'>Cliente</option>
-        </select>
-      </div> */}
+      <div className='form-group mt-1'>
+        <label>Confirmar Contraseña</label>
+        <input value={user.confirmPassword} onChange={handleUser} type='password' name='confirmPassword' className='form-control' placeholder='Confirme su contraseña' />
+      </div>
       <button type='submit' className='btn btn-light mt-3'>Registrarme</button>
     </form>
   )
