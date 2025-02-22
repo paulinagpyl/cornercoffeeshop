@@ -1,7 +1,7 @@
 /* eslint-disable multiline-ternary */
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../context/UserContext'
+import { UserContext } from '../store/UserContext'
 import '../css/CornerCoffeeShop.css'
 
 const Header = () => {
