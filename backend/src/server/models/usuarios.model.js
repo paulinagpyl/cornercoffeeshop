@@ -37,8 +37,8 @@ const login = async ({ email, password }) => {
     password = password.trim()
 
     console.log('🔍 Iniciando sesión con:', { email })
-    const user = await db('SELECT usuario_id, nombre, apellido, pass, rol FROM usuarios WHERE email = $1;',  [email])
-    if (!user || user.length === 0) {throw new Error('Usuario no encontrado')}
+    const user = await db('SELECT usuario_id, nombre, apellido, pass, rol FROM usuarios WHERE email = $1;', [email])
+    if (!user || user.length === 0) { throw new Error('Usuario no encontrado') }
 
     const storedPassword = user[0].pass
 
