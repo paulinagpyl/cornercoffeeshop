@@ -12,12 +12,39 @@ body {
   color: var(--dark-brown);
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.containerHome{
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+i.fab {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+a:hover i.fab {
+  color: var(--medium-brown);
+}
+
 /* Hero Section */
 #Hero-Section {
   background-image: url("/cafe_grano.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: left;
+  margin: 0;
+  padding-right: 150px;
 }
 
 /* Button Styles */

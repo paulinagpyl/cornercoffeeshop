@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 import { Link, useNavigate, NavLink } from 'react-router-dom'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { CoffeeContext } from '../store/CoffeeContext'
+import '../css/CornerCoffeeShop.css'
 
 const Navigation = () => {
   const navigate = useNavigate()
@@ -29,13 +30,13 @@ const Navigation = () => {
     if (!getDeveloper) {
       return (
         <Nav className='ml-auto'>
-          <Nav.Link as={NavLink} to='/catalogo' className={validateRoot}>
+          <Nav.Link as={NavLink} to='/catalogo' className={`text-light ${validateRoot({ isActive: true })}`}>
             Catálogo
           </Nav.Link>
-          <Nav.Link as={NavLink} to='/registrarse' className={validateRoot}>
+          <Nav.Link as={NavLink} to='/registrarse' className={`text-light ${validateRoot({ isActive: true })}`}>
             Registrarse
           </Nav.Link>
-          <Nav.Link as={NavLink} to='/login' className={validateRoot}>
+          <Nav.Link as={NavLink} to='/login' className={`text-light ${validateRoot({ isActive: true })}`}>
             Iniciar Sesión
           </Nav.Link>
         </Nav>
@@ -55,17 +56,14 @@ const Navigation = () => {
   }
 
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='dark-brown' expand='lg'>
       <Container>
-        <Navbar.Brand as={Link} to='/'>
+        <Navbar.Brand as={Link} to='/' className='text-light'>
           ☕ Corner Coffee Shop
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='navbar-nav' />
         <Navbar.Collapse id='navbar-nav'>
           <Nav className='me-auto'>
-            <Nav.Link as={Link} to='/'>
-              Inicio
-            </Nav.Link>
           </Nav>
           {isLogin()}
         </Navbar.Collapse>
