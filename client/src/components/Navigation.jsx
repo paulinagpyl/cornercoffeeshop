@@ -45,7 +45,7 @@ const Navigation = () => {
 
     return (
       <Nav className='ml-auto'>
-        <Nav.Link as={Link} to='/perfil' className='btn btn-light m-1'>
+        <Nav.Link as={Link} to='/profile' className='btn btn-light m-1'>
           Mi Perfil
         </Nav.Link>
         <Nav.Link as='button' onClick={logout} className='btn btn-danger'>
