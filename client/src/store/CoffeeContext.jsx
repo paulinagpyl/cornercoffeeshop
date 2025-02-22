@@ -1,65 +1,58 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react';
 
-export const CoffeeContext = createContext()
+const CoffeeContext = createContext();
 
 const CoffeeProvider = ({ children }) => {
-  const [coffee, setCoffee] = useState([])
-  const [cart, setCart] = useState([])
-  const [user, setUser] = useState(null)
+  const [coffee, setCoffee] = useState([]); // Inicializa coffee como un array vacío
+  const [cart, setCart] = useState([]);
 
+  // Lógica para obtener el café desde la base de datos (ya la tienes implementada correctamente)
   useEffect(() => {
-    const getCoffee = async () => {
+    const getCoffeeFromDB = async () => {
       try {
-        const response = await fetch('http://localhost:5173/utils/coffees.json')
-        const data = await response.json()
+        const response = await fetch('http://localhost:3000/productos');
+        const data = await response.json();
 
-        setCoffee(data)
+        if (data.status) {
+          const formattedCoffees = data.message.map((item) => ({
+            id: item.producto_id,
+            img: item.imagen_url,
+            name: item.nombre,
+            detalle: item.descripcion,
+            price: parseFloat(item.precio),
+          }));
+          setCoffee(formattedCoffees);
+        } else {
+          console.error('Error al cargar los cafés desde la base de datos');
+        }
       } catch (error) {
-        console.error('Error al requerir café:', error)
+        console.error('Error al obtener los cafés:', error);
       }
-    }
-    getCoffee()
-  }, [])
+    };
 
-  const setDeveloper = (develop) => setUser(develop)
+    getCoffeeFromDB();
+  }, []);
 
-  const addCart = (coffee) => {
-    const foundCoffee = cart.findIndex((cartCoffee) => cartCoffee.id === coffee.id)
+  // Función para agregar café al carrito
+  const addCart = (coffeeItem) => {
+    const foundCoffee = cart.findIndex((cartCoffee) => cartCoffee.id === coffeeItem.id);
     if (foundCoffee < 0) {
-      coffee.count = 1
-      setCart([...cart, coffee])
+      coffeeItem.count = 1;
+      setCart([...cart, coffeeItem]);
     } else {
-      cart[foundCoffee].count++
-      setCart([...cart])
+      cart[foundCoffee].count++;
+      setCart([...cart]);
     }
-  }
+  };
 
-  const increaseCount = (index) => {
-    cart[index].count++
-    setCart([...cart])
-  }
-
-  const decreaseCount = (index) => {
-    if (cart[index].count === 1) {
-      cart.splice(index, 1)
-    } else {
-      cart[index].count--
-    }
-    setCart([...cart])
-  }
-
-  const totalCart = cart.reduce(
-    (acumulador, { price, count }) => acumulador + price * count, 0
-  )
-
-  // const globalState = { plantas,cart,setCart,addCart,decreaseCount, increaseCount, totalCart};
-  const globalState = { coffee, cart, setCart, addCart, decreaseCount, increaseCount, totalCart, getDeveloper: user, setDeveloper }
+  const totalCart = cart.reduce((accum, { price, count }) => accum + price * count, 0);
 
   return (
-    <CoffeeContext.Provider value={globalState}>
+    <CoffeeContext.Provider value={{ coffee, cart, setCart, addCart, totalCart }}>
       {children}
     </CoffeeContext.Provider>
-  )
-}
+  );
+};
 
-export default CoffeeProvider
+// Exportación del contexto y proveedor
+export { CoffeeContext, CoffeeProvider };
