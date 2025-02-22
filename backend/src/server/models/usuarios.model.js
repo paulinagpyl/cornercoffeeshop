@@ -47,7 +47,6 @@ const login = async ({ email, password }) => {
     }
 
     const isMatch = await bcrypt.compare(password, storedPassword)
-    
 
     if (!isMatch) {
       throw new Error('Credenciales inválidas')
