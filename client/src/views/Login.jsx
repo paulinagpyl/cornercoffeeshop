@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../store/UserContext'
 
@@ -8,7 +8,14 @@ const initialForm = { email: '', password: '' }
 const Login = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(initialForm)
-  const { login } = useContext(UserContext)
+  const { login, profile } = useContext(UserContext)
+
+  // Redirigir automáticamente si el usuario ya está autenticado
+  useEffect(() => {
+    if (profile) {
+      navigate('/profile')
+    }
+  }, [profile, navigate])
 
   // Maneja los cambios en los inputs
   const handleUser = (event) =>
@@ -28,7 +35,6 @@ const Login = () => {
 
     try {
       await login(user.email, user.password) // Llamamos al contexto
-
       window.alert('🎉 Usuario identificado con éxito.')
       navigate('/profile') // Redirige al perfil
     } catch (error) {
