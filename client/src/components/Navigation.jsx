@@ -27,7 +27,7 @@ const Navigation = () => {
   }
 
   return (
-    <Navbar bg='dark' expand='lg' className='navbar navbar-expand-sm navbar-light'>
+    <Navbar bg='coffee' expand='lg' className='navbar navbar-expand-sm navbar-light'>
       <Container>
         <Navbar.Brand as={Link} to='/' className='text-light'>
           ☕ Corner Coffee Shop
@@ -35,9 +35,9 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls='navbar-nav' />
         <Navbar.Collapse id='navbar-nav'>
           <Nav className='me-auto'>
-            <Nav.Link as={NavLink} to='/' className={`text-light ${validateRoot({ isActive: true })}`}>
+            {/* <Nav.Link as={NavLink} to='/' className={`text-light ${validateRoot({ isActive: true })}`}>
               Home
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link as={NavLink} to='/catalogo' className={`text-light ${validateRoot({ isActive: true })}`}>
               Catálogo
             </Nav.Link>

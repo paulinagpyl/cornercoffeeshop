@@ -10,6 +10,7 @@ import Header from './views/Header'
 import AuthGuard from './guard/AuthGuard'
 import Register from './views/Register'
 import Profile from './views/Profile'
+import ShoppingCart from './views/ShoppingCart'
 
 const App = () => {
   return (
@@ -47,6 +48,10 @@ const App = () => {
         <Route
           path='/*'
           element={<NotFound />}
+        />
+        <Route
+          path='/cart'
+          element={<ShoppingCart />}
         />
         <Route
           path='/cafes/:id'
