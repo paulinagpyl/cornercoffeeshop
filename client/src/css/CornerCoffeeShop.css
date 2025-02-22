@@ -14,8 +14,8 @@ body {
 
 html, body {
   height: 100%;
-  margin: 0; /* Elimina márgenes predeterminados */
-  padding: 0; /* Elimina rellenos predeterminados */
+  margin: 0;
+  padding: 0;
 }
 
 .footer {
@@ -44,7 +44,7 @@ a:hover i.fab {
   background-size: cover;
   background-position: left;
   margin: 0;
-  padding: 0;
+  padding-right: 150px;
 }
 
 /* Button Styles */

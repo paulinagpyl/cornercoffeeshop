@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className='container'>
           <div className='row'>
             <div className='col-md-4'>
-              <h5>Sobre nosotros</h5>
+              <h5>About Us</h5>
               <p>
                 Somos una comunidad de amantes del café
               </p>
