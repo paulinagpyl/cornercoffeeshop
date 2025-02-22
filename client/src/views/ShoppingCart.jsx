@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { CartContext, useCart } from '../store/CartContext'
+import { useCart } from '../store/CartContext'
 import { UserContext } from '../store/UserContext'
 
 const ShoppingCart = () => {
-  const { cart, totalPrice, removeFromCart, addToCart } = useCart(CartContext)
+  const { cart, totalPrice, removeFromCart, addToCart } = useCart()
   const { token, checkout } = useContext(UserContext)
 
   const [quantities, setQuantities] = useState(
