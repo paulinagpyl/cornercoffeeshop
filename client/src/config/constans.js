@@ -1,6 +1,7 @@
-export const URLBASE = 'http://localhost:3000'
+
+const urlBase = import.meta.env.VITE_URLBASE;
 
 export const ENDPOINT = {
-  login: `${URLBASE}/login`,
-  users: `${URLBASE}/register`
-}
+  login: `${urlBase}/login`,
+  users: `${urlBase}/register`
+};
