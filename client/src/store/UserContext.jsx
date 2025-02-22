@@ -1,19 +1,17 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useCallback } from 'react'
 
 export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
-  const [token, setToken] = useState([])
-  const [email, setEmail] = useState([])
+  const [token, setToken] = useState(null)
+  const [email, setEmail] = useState(null)
   const [profile, setProfile] = useState(null)
 
   const login = async (email, password) => {
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
 
@@ -33,9 +31,7 @@ const UserProvider = ({ children }) => {
     try {
       const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
 
@@ -54,16 +50,18 @@ const UserProvider = ({ children }) => {
   const logout = () => {
     setToken(null)
     setEmail(null)
-    setProfile(null) // Limpiar el perfil del estado al hacer logout
+    setProfile(null)
   }
 
-  const getProfile = async () => {
+  const getProfile = useCallback(async () => {
+    if (!token) return // Evita hacer la petición si no hay token
+
     try {
       const response = await fetch('http://localhost:3000/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}` // Enviar el token JWT en el header
+          Authorization: `Bearer ${token}`
         }
       })
 
@@ -72,11 +70,11 @@ const UserProvider = ({ children }) => {
       }
 
       const data = await response.json()
-      setProfile(data) // Almacenar los datos del perfil en el estado
+      setProfile(data)
     } catch (error) {
       console.error('Error fetching profile:', error)
     }
-  }
+  }, [token]) // Se ejecuta solo cuando `token` cambia
 
   const checkout = async (orderDetails) => {
     try {
@@ -84,7 +82,7 @@ const UserProvider = ({ children }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}` // Enviar el token JWT en el header
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(orderDetails)
       })
@@ -94,7 +92,7 @@ const UserProvider = ({ children }) => {
       }
 
       const data = await response.json()
-      return data // Retornar los datos de respuesta del checkout
+      return data
     } catch (error) {
       console.error('Error during checkout:', error)
     }
@@ -104,12 +102,12 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider value={{
       token,
       email,
-      profile, // Exponer el perfil en el contexto
+      profile,
       login,
       register,
       logout,
-      getProfile, // Añadir el método getProfile al contexto
-      checkout // Añadir el método checkout al contexto
+      getProfile,
+      checkout
     }}
     >
       {children}
