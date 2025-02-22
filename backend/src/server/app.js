@@ -13,8 +13,8 @@ app.use(express.json())
 
 app.use(serverLog)
 
-app.use(usuariosRouter)
 app.use(productosRouter)
+app.use(usuariosRouter)
 app.use(errors)
 
 app.listen(PORT, () => console.log('Server UP!!'))
