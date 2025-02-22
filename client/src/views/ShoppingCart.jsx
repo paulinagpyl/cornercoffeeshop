@@ -62,7 +62,7 @@ const ShoppingCart = () => {
                             <p className='lead fw-normal mb-2'>{item.name}</p>
                             <p>
                               <span className='text-muted'>Ingredients: </span>
-                              {item.ingredients.join(', ')}
+                              {item.ingredients ? item.ingredients.join(', ') : 'N/A'}
                             </p>
                           </div>
                           <div className='col-md-3 col-lg-3 col-xl-2 d-flex'>
