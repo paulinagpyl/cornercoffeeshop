@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
-import { CoffeeProvider } from './store/CoffeeContext.jsx'  // Cambio aquí
+import CoffeeProvider from './store/CoffeeContext.jsx'  // Cambio aquí nuevamente
 import UserProvider from './store/UserContext.jsx'
 import CartProvider from './store/CartContext.jsx'
 
