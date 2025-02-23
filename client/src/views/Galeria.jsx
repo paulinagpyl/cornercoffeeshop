@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { CoffeeContext } from "../store/CoffeeContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
+import '../css/CornerCoffeeShop.css'
 
 const Galeria = () => {
   // eslint-disable-next-line no-unused-vars

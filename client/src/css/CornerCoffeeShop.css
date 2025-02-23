@@ -37,6 +37,10 @@ a:hover i.fab {
   color: var(--medium-brown);
 }
 
+.gallery{
+  margin-left: 5%;
+}
+
 /* Hero Section */
 #Hero-Section {
   background-image: url("/cafe_grano.jpg");
