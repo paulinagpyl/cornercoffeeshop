@@ -27,23 +27,30 @@ const UserProvider = ({ children }) => {
     }
   }
 
-  const register = async (email, password) => {
+  const register = async (nombre, apellido, email, pass) => {
     try {
       const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({
+          nombre,
+          apellido,
+          email,
+          pass,
+          rol: 'usuario' // Asigna el rol predeterminado
+        })
       })
 
       if (!response.ok) {
-        throw new Error('Registration failed')
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Registration failed')
       }
 
       const data = await response.json()
       setToken(data.token)
       setEmail(data.email)
     } catch (error) {
-      console.error('Error during registration:', error)
+      console.error('❌ Error durante el registro:', error.message)
     }
   }
 
