@@ -4,18 +4,25 @@ import { CoffeeContext } from "../store/CoffeeContext";
 import { Button, Card } from "react-bootstrap";
 
 const CoffeeDetail = () => {
-  // eslint-disable-next-line no-unused-vars
   const { coffee, addCart } = useContext(CoffeeContext);
   const { id } = useParams();
   const [coffeeData, setCoffeeData] = useState(null);
   const navigate = useNavigate();
 
+  // Depuración: Ver los datos de café cuando se cargan
   useEffect(() => {
     if (coffee.length > 0) {
       const foundCoffee = coffee.find((coffee) => String(coffee.id) === id);
       setCoffeeData(foundCoffee);
     }
   }, [id, coffee]);
+
+  // Función para formatear los precios con separador de miles y sin decimales
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-CL', {
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
 
   if (!coffeeData) {
     return <div>Cargando...</div>;
@@ -57,14 +64,13 @@ const CoffeeDetail = () => {
             <strong>Detalle:</strong> {coffeeData.detalle}
           </Card.Text>
           <Card.Text style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            <strong>Precio:</strong> {coffeeData.price}
+            <strong>Precio:</strong> ${formatPrice(coffeeData.price)}
           </Card.Text>
 
           {/* Botón para añadir al carrito */}
           <Button
             variant="dark"
             style={{ backgroundColor: "#8B4513", borderColor: "#8B4513" }}
-            // onClick={() => addCart(coffeeData)}>
             onClick={() => navigate("/catalogo")}
           >
             Volver al Catálogo
@@ -72,10 +78,6 @@ const CoffeeDetail = () => {
           <Button
             variant="dark"
             style={{ backgroundColor: "#8B4513", borderColor: "#8B4513" }}
-            // onClick={() => {
-            //   console.log("Café agregado al carrito:", coffee.name);
-            //   addCart(coffee);
-            // }}
             onClick={() => {
               console.log("Café agregado al carrito:", coffeeData.name);
               addCart(coffeeData);  // Aquí cambiamos coffee por coffeeData
@@ -83,13 +85,6 @@ const CoffeeDetail = () => {
           >
             Agregar al carrito
           </Button>
-          {/* <Button
-            variant='dark'
-            style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}
-            onClick={() => addCart(coffeeData)}
-          >
-            agregar
-          </Button> */}
         </Card.Body>
       </Card>
     </div>

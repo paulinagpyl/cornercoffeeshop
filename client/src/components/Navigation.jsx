@@ -10,6 +10,13 @@ const Navigation = () => {
   const { profile, logout } = useContext(UserContext); // Usa UserContext para autenticación
   const { totalCart } = useContext(CoffeeContext); // Usa CoffeeContext para el carrito
 
+  // Función para formatear los precios con separador de miles y sin decimales
+  const formatPrice = (price) => {
+    return `$${new Intl.NumberFormat('es-CL', {
+      minimumFractionDigits: 0,
+    }).format(price)}`;
+  };
+  
   return (
     <Navbar
       bg="coffee"
@@ -62,7 +69,7 @@ const Navigation = () => {
             className="text-light"
             style={{ fontWeight: "bold", fontStyle: "italic" }}
           >
-            🛒 Carrito ({totalCart.toFixed(2)})
+            🛒 Carrito ({formatPrice(totalCart)})
           </Nav.Link>
         </Nav>
       </Container>
