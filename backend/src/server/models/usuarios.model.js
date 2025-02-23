@@ -4,25 +4,29 @@ const bcrypt = require('bcrypt')
 // Función para registrar usuarios con contraseña encriptada
 const register = async ({ nombre, apellido, email, pass, rol }) => {
   try {
+    if (!nombre || !apellido || !email || !pass || !rol) {
+      throw new Error('Todos los campos son obligatorios')
+    }
+
     console.log('🔹 Registrando usuario:', { nombre, apellido, email, rol })
-    // OJOOOOO  cuidado con el largo que puede ser mayor a lo que se guarda en pass de la BD
-    const hashedPassword = await bcrypt.hash(pass, 10)
+
+    const hashedPassword = await bcrypt.hash(pass.trim(), 10)
     console.log('🔐 Contraseña encriptada:', hashedPassword)
 
     const result = await db(
       'INSERT INTO usuarios (usuario_id, nombre, apellido, email, pass, rol) VALUES (DEFAULT, $1, $2, $3, $4, $5) RETURNING usuario_id, nombre, apellido, email, rol;',
-      [nombre, apellido, email, hashedPassword, rol]
+      [nombre.trim(), apellido.trim(), email.trim(), hashedPassword, rol.trim()]
     )
 
     if (!result || result.length === 0) {
-      throw new Error('Error al registrar el usuario')
+      throw new Error('No se pudo registrar el usuario')
     }
 
     console.log('✅ Usuario registrado con éxito:', result[0])
     return result[0]
   } catch (error) {
     console.error('❌ Error en register:', error.message)
-    throw new Error('Error al registrar el usuario')
+    throw new Error(error.message)
   }
 }
 
@@ -37,17 +41,21 @@ const login = async ({ email, password }) => {
     password = password.trim()
 
     console.log('🔍 Iniciando sesión con:', { email })
-    const user = await db('SELECT usuario_id, nombre, apellido, pass, rol FROM usuarios WHERE email = $1;', [email])
-    if (!user || user.length === 0) { throw new Error('Usuario no encontrado') }
+    const user = await db(
+      'SELECT usuario_id, nombre, apellido, pass, rol FROM usuarios WHERE email = $1;',
+      [email]
+    )
+
+    if (!user || user.length === 0) {
+      throw new Error('Usuario no encontrado')
+    }
 
     const storedPassword = user[0].pass
-
     if (!storedPassword) {
       throw new Error('Contraseña no encontrada en la base de datos')
     }
 
     const isMatch = await bcrypt.compare(password, storedPassword)
-
     if (!isMatch) {
       throw new Error('Credenciales inválidas')
     }
@@ -56,14 +64,14 @@ const login = async ({ email, password }) => {
       usuario_id: user[0].usuario_id,
       nombre: user[0].nombre,
       apellido: user[0].apellido,
-      rol: user[0].rol
+      rol: user[0].rol,
     })
 
     return {
       usuario_id: user[0].usuario_id,
       nombre: user[0].nombre,
       apellido: user[0].apellido,
-      rol: user[0].rol
+      rol: user[0].rol,
     }
   } catch (error) {
     console.error('❌ Error en login:', error.message)
@@ -74,9 +82,11 @@ const login = async ({ email, password }) => {
 // Obtener usuario por ID
 const getUserById = async (usuario_id) => {
   try {
-    const result = await db('SELECT usuario_id, nombre, apellido, email, rol FROM usuarios WHERE usuario_id = $1;', [usuario_id])
-    if (!result || result.length === 0) { return null }
-    return result[0]
+    const result = await db(
+      'SELECT usuario_id, nombre, apellido, email, rol FROM usuarios WHERE usuario_id = $1;',
+      [usuario_id]
+    )
+    return result.length > 0 ? result[0] : null
   } catch (error) {
     console.error('❌ Error en getUserById:', error.message)
     throw new Error('Error al obtener el usuario')
@@ -86,9 +96,7 @@ const getUserById = async (usuario_id) => {
 // Obtener todos los usuarios (Admin)
 const getAllUsers = async () => {
   try {
-    const result = await db('SELECT usuario_id, nombre, apellido, email, rol FROM usuarios;')
-
-    return result
+    return await db('SELECT usuario_id, nombre, apellido, email, rol FROM usuarios;')
   } catch (error) {
     console.error('❌ Error en getAllUsers:', error.message)
     throw new Error('Error al obtener la lista de usuarios')
@@ -98,11 +106,15 @@ const getAllUsers = async () => {
 // Actualizar usuario por ID
 const updateUser = async (usuario_id, { nombre, apellido, email, pass, rol }) => {
   try {
+    if (!usuario_id) {
+      throw new Error('ID de usuario es obligatorio')
+    }
+
     let query = 'UPDATE usuarios SET nombre = $1, apellido = $2, email = $3, rol = $4'
-    const values = [nombre, apellido, email, rol]
+    const values = [nombre.trim(), apellido.trim(), email.trim(), rol.trim()]
 
     if (pass) {
-      const hashedPassword = await bcrypt.hash(pass, 10)
+      const hashedPassword = await bcrypt.hash(pass.trim(), 10)
       query += ', pass = $5 WHERE usuario_id = $6 RETURNING usuario_id, nombre, apellido, email, rol;'
       values.push(hashedPassword, usuario_id)
     } else {
@@ -111,12 +123,7 @@ const updateUser = async (usuario_id, { nombre, apellido, email, pass, rol }) =>
     }
 
     const result = await db(query, values)
-
-    if (!result || result.length === 0) {
-      throw new Error('Error al actualizar el usuario')
-    }
-
-    return result[0]
+    return result.length > 0 ? result[0] : null
   } catch (error) {
     console.error('❌ Error en updateUser:', error.message)
     throw new Error('Error al actualizar el usuario')
@@ -127,12 +134,7 @@ const updateUser = async (usuario_id, { nombre, apellido, email, pass, rol }) =>
 const deleteUser = async (usuario_id) => {
   try {
     const result = await db('DELETE FROM usuarios WHERE usuario_id = $1 RETURNING usuario_id;', [usuario_id])
-
-    if (!result || result.length === 0) {
-      throw new Error('Error al eliminar el usuario')
-    }
-
-    return result[0]
+    return result.length > 0 ? result[0] : null
   } catch (error) {
     console.error('❌ Error en deleteUser:', error.message)
     throw new Error('Error al eliminar el usuario')
