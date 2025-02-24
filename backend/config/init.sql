@@ -1,9 +1,30 @@
-SELECT * FROM usuarios;
+-- CREATE DATABASE softjobs;
 
-SELECT * FROM PRODUCTOS;
+CREATE TABLE usuarios (
+    usuario_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    pass  VARCHAR(60)   NOT NULL,
+    rol VARCHAR(50) NOT NULL CHECK (rol IN ('admin', 'usuario', 'editor'))
+);
 
-SELECT * FROM VENTAS;
+CREATE TABLE productos (
+    producto_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL CHECK (precio >= 0),
+    imagen_url TEXT NOT NULL
+);
 
+CREATE TABLE ventas (
+    venta_id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(producto_id) ON DELETE CASCADE
+);
 -- Insertar productos
 INSERT INTO productos (nombre, descripcion, precio, imagen_url) VALUES
 ('Espresso_BD', 'Un café concentrado con un sabor intenso y una capa de crema en la parte superior. Perfecto para los amantes del café fuerte.', 2500, 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg'),
