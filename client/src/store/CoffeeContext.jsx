@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 
+export const SERVER_URL = import.meta.env.VITE_URLBASE
 export const CoffeeContext = createContext()
 
 const CoffeeProvider = ({ children }) => {
@@ -10,7 +11,7 @@ const CoffeeProvider = ({ children }) => {
   useEffect(() => {
     const getCoffeeFromDB = async () => {
       try {
-        const response = await fetch('http://localhost:3000/productos')
+        const response = await fetch(`${SERVER_URL}/productos`)
         const data = await response.json()
 
         if (data.status) {
@@ -46,18 +47,25 @@ const CoffeeProvider = ({ children }) => {
     }
   }
 
-  const increaseCount = (index) => {
-    cart[index].count++
-    setCart([...cart])
+  const increaseCount = (id) => {
+    const updateCart = cart.map((item) =>
+      item.id === id ? {...item,count:item.count +1} :item
+    )
+    setCart(updateCart)
   }
 
-  const decreaseCount = (index) => {
-    if (cart[index].count === 1) {
-      cart.splice(index, 1)
-    } else {
-      cart[index].count--
-    }
-    setCart([...cart])
+  const decreaseCount = (id) => {
+    const updatedCart = cart
+      .map((item) =>
+        item.id === id ? { ...item, count: item.count - 1 } : item
+      )
+      .filter((item) => item.count > 0); // Elimina productos con count = 0
+    setCart(updatedCart)
+  }
+
+  const removeItem = (id) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCart(updatedCart)
   }
 
   const totalCart = cart.reduce((accum, { price, count }) => accum + price * count, 0)
@@ -69,6 +77,7 @@ const CoffeeProvider = ({ children }) => {
     addCart,
     decreaseCount,
     increaseCount,
+    removeItem,
     totalCart,
     getDeveloper: user,
     setDeveloper

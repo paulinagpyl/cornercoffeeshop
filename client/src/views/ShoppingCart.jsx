@@ -71,20 +71,20 @@ const ShoppingCart = () => {
                       {/* Detalles del producto */}
                       <div className="col-md-3">
                         <p className="lead fw-normal mb-2">{item.name}</p>
-                        <p className="text-muted">
+                        {/* <p className="text-muted">
                           <strong>Ingredientes:</strong> {item.ingredients?.join(", ") || "N/A"}
-                        </p>
+                        </p> */}
                       </div>
 
                       {/* Contador de cantidad */}
                       <div className="col-md-3 d-flex align-items-center">
-                        <button className="btn btn-link px-2" onClick={() => decreaseCount(item.id)}>
-                          ➖
+                        <button className="btn btn-link px-2" style={{ border: "2px solid black", textDecoration: "none", position: "relative", top: "-7px" }} onClick={() => {console.log("resta",item.id),decreaseCount(item.id)}}>
+                         ➖
                         </button>
                         <span className="form-control text-center mx-2" style={{ maxWidth: "50px" }}>
                           {item.count}
                         </span>
-                        <button className="btn btn-link px-2" onClick={() => increaseCount(item.id)}>
+                        <button className="btn btn-link px-2"style={{ border: "2px solid black", textDecoration: "none", position: "relative", top: "-7px" }} onClick={() => increaseCount(item.id)}>
                           ➕
                         </button>
                       </div>
