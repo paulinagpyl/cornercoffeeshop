@@ -27,7 +27,7 @@ const UserProvider = ({ children }) => {
     }
   }
 
-  const register = async (nombre, apellido, email, pass) => {
+  const register = async (nombre, apellido, email, pass, rol) => {
     try {
       const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
