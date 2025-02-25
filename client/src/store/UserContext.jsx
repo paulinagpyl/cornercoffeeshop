@@ -1,5 +1,6 @@
 import { createContext, useState, useCallback } from 'react'
 
+export const SERVER_URL = import.meta.env.VITE_URLBASE
 export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
@@ -9,7 +10,7 @@ const UserProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${SERVER_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -29,7 +30,7 @@ const UserProvider = ({ children }) => {
 
   const register = async (nombre, apellido, email, pass, rol) => {
     try {
-      const response = await fetch('http://localhost:3000/register', {
+      const response = await fetch(`${SERVER_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,7 +65,7 @@ const UserProvider = ({ children }) => {
     if (!token) return // Evita hacer la petición si no hay token
 
     try {
-      const response = await fetch('http://localhost:3000/profile', {
+      const response = await fetch(`${SERVER_URL}/profile`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
