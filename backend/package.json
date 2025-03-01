@@ -21,6 +21,7 @@
     "standard": "^17.1.0"
   },
   "dependencies": {
+    "backend": "file:",
     "Backend": "file:",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
