@@ -68,7 +68,7 @@ const Profile = () => {
                       </div>
                       <hr />
                       <MDBCardText>¡Bienvenido, {profile.nombre}!</MDBCardText>
-                      <MDBBtn color='danger' rounded block size='lg' onClick={logout}>
+                      <MDBBtn color='black' rounded block size='lg' onClick={logout}>
                         <MDBIcon fas icon='sign-out-alt me-2' /> Cerrar Sesión
                       </MDBBtn>
                     </>

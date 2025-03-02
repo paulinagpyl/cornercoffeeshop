@@ -77,3 +77,11 @@ a:hover i.fab {
   background-color: var(--medium-brown);
   color: white;
 }
+
+.navbar .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  text-align: center;
+}

@@ -31,23 +31,22 @@ const Navigation = () => {
 
         <Navbar.Toggle aria-controls='navbar-nav' />
         <Navbar.Collapse id='navbar-nav' className='justify-content-center'>
-          <Nav>
+          <Nav className='d-flex align-items-center'>
             {profile
               ? (
                 <>
-                  <Nav.Link as={Link} to='/profile' className='btn btn-light m-1'>
+                  <Nav.Link as={Link} to='/profile' className='btn btn-light text-white m-1'>
                     🔓 Mi Perfil
                   </Nav.Link>
-                  <Nav.Link
-                    as='button'
+                  <button
                     onClick={() => {
                       logout()
                       navigate('/')
                     }}
-                    className='btn btn-danger'
+                    className='btn text-white m-1'
                   >
                     🔒 Salir
-                  </Nav.Link>
+                  </button>
                 </>
                 )
               : (
@@ -68,8 +67,7 @@ const Navigation = () => {
           <Nav.Link
             as={NavLink}
             to='/cart'
-            className='text-light'
-            style={{ fontWeight: 'bold', fontStyle: 'italic' }}
+            className='text-light font-weight-bold fst-italic'
           >
             🛒 Carrito ({formatPrice(totalCart)})
           </Nav.Link>
