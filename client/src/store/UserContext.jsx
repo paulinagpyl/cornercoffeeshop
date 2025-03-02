@@ -23,12 +23,15 @@ const UserProvider = ({ children }) => {
       const data = await response.json()
       setToken(data.token)
       setEmail(data.email)
+
+      // Obtener perfil inmediatamente después de iniciar sesión
+      getProfile(data.token)
     } catch (error) {
       console.error('Error during login:', error)
     }
   }
 
-  const register = async (nombre, apellido, email, pass, rol) => {
+  const register = async (nombre, apellido, email, pass) => {
     try {
       const response = await fetch(`${SERVER_URL}/register`, {
         method: 'POST',
@@ -50,6 +53,9 @@ const UserProvider = ({ children }) => {
       const data = await response.json()
       setToken(data.token)
       setEmail(data.email)
+
+      // Obtener perfil después de registrarse
+      getProfile(data.token)
     } catch (error) {
       console.error('❌ Error durante el registro:', error.message)
     }
@@ -61,15 +67,15 @@ const UserProvider = ({ children }) => {
     setProfile(null)
   }
 
-  const getProfile = useCallback(async () => {
-    if (!token) return // Evita hacer la petición si no hay token
+  const getProfile = useCallback(async (currentToken = token) => {
+    if (!currentToken) return // Evita hacer la petición si no hay token
 
     try {
       const response = await fetch(`${SERVER_URL}/profile`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${currentToken}`
         }
       })
 
@@ -78,15 +84,15 @@ const UserProvider = ({ children }) => {
       }
 
       const data = await response.json()
-      setProfile(data)
+      setProfile(data.user)
     } catch (error) {
       console.error('Error fetching profile:', error)
     }
-  }, [token]) // Se ejecuta solo cuando `token` cambia
+  }, [token])
 
   const checkout = async (orderDetails) => {
     try {
-      const response = await fetch('http://localhost:5000/api/checkout', {
+      const response = await fetch(`${SERVER_URL}/checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -39,7 +39,10 @@ const Profile = () => {
                       <div>
                         <MDBTypography tag='h6'>Perfil de Usuario</MDBTypography>
                         <div className='d-flex align-items-center justify-content-between mb-3'>
-                          <p className='small mb-0'><MDBIcon far icon='user me-2' />{profile.nombre} {profile.apellido}</p>
+                          <p className='small mb-0'>
+                            <MDBIcon far icon='user me-2' />
+                            {profile.nombre} {profile.apellido}
+                          </p>
                           <p className='fw-bold mb-0'>{profile.rol}</p>
                         </div>
                       </div>
@@ -67,7 +70,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <hr />
-                      <MDBCardText>¡Bienvenido, {profile.nombre}!</MDBCardText>
+                      <MDBCardText>¡Bienvenido, {profile?.nombre}!</MDBCardText>
                       <MDBBtn color='black' rounded block size='lg' onClick={logout}>
                         <MDBIcon fas icon='sign-out-alt me-2' /> Cerrar Sesión
                       </MDBBtn>
