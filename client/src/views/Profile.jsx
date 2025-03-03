@@ -64,7 +64,7 @@ const Profile = () => {
                         <div className='d-flex gap-2'>
                           <NavLink to='/catalogo'>
                             <MDBBtn outline color='dark' rounded size='sm'>
-                              Editar Perfil
+                              Ir a Catálogo
                             </MDBBtn>
                           </NavLink>
                           <MDBBtn
