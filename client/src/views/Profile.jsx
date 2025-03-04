@@ -32,7 +32,7 @@ const Profile = () => {
     <div className='vh-110' style={{ backgroundColor: '#eee' }}>
       <MDBContainer>
         <MDBRow className='justify-content-center'>
-          <MDBCol md='9' lg='7' xl='5' className='mt-5'>
+          <MDBCol md='9' lg='7' xl='5' className='mt-5 mb-5'>
             <MDBCard style={{ borderRadius: '15px', backgroundColor: '#FFFCD4' }}>
               <MDBCardBody className='p-4 text-black'>
                 {profile ? (
