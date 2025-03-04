@@ -167,6 +167,36 @@ const deleteUser = async (req, res) => {
   }
 }
 
+// Función para realizar el checkout
+const checkout = async (req, res) => {
+  try {
+    const { items, totalAmount } = req.body
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ status: false, code: 400, message: 'No se han proporcionado productos para comprar' })
+    }
+
+    if (totalAmount <= 0) {
+      return res.status(400).json({ status: false, code: 400, message: 'El monto total debe ser mayor a cero' })
+    }
+
+    const userId = req.user.usuario_id
+    console.log('Procesando checkout para el usuario:', userId)
+
+    // Guardar la orden en la base de datos
+    const orderResult = await sql.createOrder(userId, items, totalAmount)
+
+    if (!orderResult) {
+      return res.status(500).json({ status: false, code: 500, message: 'Error al procesar la orden' })
+    }
+
+    res.status(200).json({ status: true, code: 200, message: 'Orden procesada con éxito', orderId: orderResult.insertId })
+  } catch (error) {
+    console.error('❌ Error en checkout:', error.message)
+    res.status(500).json({ status: false, code: 500, message: error.message })
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -177,5 +207,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
+  checkout // Nueva función de checkout
 }

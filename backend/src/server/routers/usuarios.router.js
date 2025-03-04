@@ -9,6 +9,9 @@ router.post('/register', usuariosController.register)
 router.post('/login', usuariosController.login)
 router.post('/logout', usuariosController.logout)
 
+// Ruta para checkout
+router.post('/checkout', authMiddleware, usuariosController.checkout)
+
 // Gestión de perfil (requiere autenticación)
 router.get('/profile', authMiddleware, usuariosController.getProfile)
 router.put('/profile', authMiddleware, usuariosController.updateProfile)
