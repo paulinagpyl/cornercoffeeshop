@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable multiline-ternary */
 import React, { useState, useContext, useEffect } from 'react'
 import { CoffeeContext } from '../store/CoffeeContext'
@@ -6,7 +5,7 @@ import { UserContext } from '../store/UserContext'
 
 const ShoppingCart = () => {
   const { cart, totalCart, decreaseCount, increaseCount, removeItem, clearCart } = useContext(CoffeeContext)
-  const { token, checkout } = useContext(UserContext)
+  const { token } = useContext(UserContext)
 
   const [purchaseCompleted, setPurchaseCompleted] = useState(false)
 
@@ -17,6 +16,7 @@ const ShoppingCart = () => {
       return
     }
 
+    // Simulando un proceso de compra
     const orderDetails = {
       items: cart.map((item) => ({
         id: item.id,
@@ -27,16 +27,14 @@ const ShoppingCart = () => {
       total: totalCart
     }
 
-    try {
-      const response = await checkout(orderDetails)
-      if (response) {
-        console.log('¡CHECKOUT EXITOSO!')
-        setPurchaseCompleted(true)
-        clearCart() // Vaciar el carrito después de la compra
-      }
-    } catch (error) {
-      console.error('Error durante el checkout:', error)
-    }
+    // Simulando la respuesta del backend
+    setTimeout(() => {
+      console.log('¡CHECKOUT EXITOSO!')
+      setPurchaseCompleted(true)
+      clearCart() // Vaciar el carrito después de la compra
+    }, 1000) // Simula un retraso de 1 segundo como si fuera una llamada real
+
+    // En este punto no se hace ninguna llamada al backend
   }
 
   // Formatear precios con separador de miles (CLP)
