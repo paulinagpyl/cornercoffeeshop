@@ -33,7 +33,7 @@ const Profile = () => {
       <MDBContainer>
         <MDBRow className='justify-content-center'>
           <MDBCol md='9' lg='7' xl='5' className='mt-5'>
-            <MDBCard style={{ borderRadius: '15px', backgroundColor: '#93e2bb' }}>
+            <MDBCard style={{ borderRadius: '15px', backgroundColor: '#FFFCD4' }}>
               <MDBCardBody className='p-4 text-black'>
                 {profile ? (
                   <>
