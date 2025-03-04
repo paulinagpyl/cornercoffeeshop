@@ -29,7 +29,7 @@ const Profile = () => {
   }, [token, navigate, getProfile])
 
   return (
-    <div className='vh-100' style={{ backgroundColor: '#eee' }}>
+    <div className='vh-110' style={{ backgroundColor: '#eee' }}>
       <MDBContainer>
         <MDBRow className='justify-content-center'>
           <MDBCol md='9' lg='7' xl='5' className='mt-5'>
