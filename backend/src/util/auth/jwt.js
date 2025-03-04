@@ -2,12 +2,12 @@ const jwt = require('jsonwebtoken')
 
 const KEY = process.env.JWT_SECRET_KEY
 
-console.log('🔑 JWT_SECRET_KEY:', KEY ? '✅ Definida' : '❌ No definida') // Verificar si la clave está disponible
+// console.log('🔑 JWT_SECRET_KEY:', KEY ? '✅ Definida' : '❌ No definida') // Verificar si la clave está disponible
 
 const jwtSign = (payload) => {
   try {
     const token = jwt.sign(payload, KEY, { expiresIn: '2h' })
-    console.log('🔐 Token generado:', token) // Verificar el token generado
+    // console.log('🔐 Token generado:', token) // Verificar el token generado
     return token
   } catch (error) {
     console.error('❌ Error al firmar el token:', error.message)

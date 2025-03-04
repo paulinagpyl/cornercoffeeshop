@@ -9,7 +9,7 @@ const { ClientBase } = require('pg')
 const app = express()
 const PORT = process.env.PORT ?? 3000
 const { CLIENT_URL} = process.env
-console.log ({CLIENT_URL})
+// console.log ({CLIENT_URL})
 
 // app.use(cors()) se cambia para restringir el back de solo el front nuestro
 app.use(cors({

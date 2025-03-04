@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const db = require('../database/db_connect.js')
 const bcrypt = require('bcrypt')
 
@@ -65,14 +64,14 @@ const login = async ({ email, password }) => {
       usuario_id: user[0].usuario_id,
       nombre: user[0].nombre,
       apellido: user[0].apellido,
-      rol: user[0].rol
+      rol: user[0].rol,
     })
 
     return {
       usuario_id: user[0].usuario_id,
       nombre: user[0].nombre,
       apellido: user[0].apellido,
-      rol: user[0].rol
+      rol: user[0].rol,
     }
   } catch (error) {
     console.error('❌ Error en login:', error.message)
@@ -132,7 +131,6 @@ const updateUser = async (usuario_id, { nombre, apellido, email, pass, rol }) =>
 }
 
 // Eliminar usuario por ID
-// eslint-disable-next-line camelcase
 const deleteUser = async (usuario_id) => {
   try {
     const result = await db('DELETE FROM usuarios WHERE usuario_id = $1 RETURNING usuario_id;', [usuario_id])

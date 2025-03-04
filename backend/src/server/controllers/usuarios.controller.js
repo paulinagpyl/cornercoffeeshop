@@ -11,7 +11,6 @@ const register = async (req, res) => {
 
     res.status(201).json({ status: true, code: 201, message: 'Usuario creado con éxito' })
   } catch (error) {
-    console.error('❌ Error en register:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -20,7 +19,6 @@ const login = (req, res) => {
   sql.login(req.body)
     .then((result) => {
       if (result.length === 0) {
-        console.log('🔴 Usuario no encontrado:', { result })
         return res.status(401).json({ status: false, code: 401, message: 'Usuario y/o contraseña no existen' })
       }
 
@@ -32,12 +30,10 @@ const login = (req, res) => {
       }
 
       const token = jwtSign(payload)
-      console.log('📤 Enviando respuesta con token:', token)
 
       res.status(200).json({ status: true, code: 200, token })
     })
     .catch((error) => {
-      console.error('❌ Error en login:', error.message)
       res.status(500).json({ status: false, code: 500, message: error.message })
     })
 }
@@ -50,17 +46,13 @@ const logout = (req, res) => {
 // Obtener perfil de usuario
 const getProfile = async (req, res) => {
   try {
-    console.log('📥 req.user:', req.user) // Verifica si req.user existe
-
     if (!req.user) {
       return res.status(401).json({ status: false, code: 401, message: 'No autorizado. Token inválido o expirado' })
     }
 
     const userId = req.user.usuario_id
-    console.log('🔍 userId obtenido:', userId) // Verifica si userId se obtiene correctamente
 
     const user = await sql.getUserById(userId)
-    console.log('📝 Usuario encontrado:', user) // Muestra los datos del usuario obtenido de la BD
 
     if (!user) {
       return res.status(404).json({ status: false, code: 404, message: 'Usuario no encontrado' })
@@ -68,7 +60,6 @@ const getProfile = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, user })
   } catch (error) {
-    console.error('❌ Error en getProfile:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -85,7 +76,6 @@ const updateProfile = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, message: 'Perfil actualizado con éxito' })
   } catch (error) {
-    console.error('❌ Error en updateProfile:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -102,7 +92,6 @@ const deleteAccount = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, message: 'Cuenta eliminada con éxito' })
   } catch (error) {
-    console.error('❌ Error en deleteAccount:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -114,7 +103,6 @@ const getAllUsers = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, users })
   } catch (error) {
-    console.error('❌ Error en getAllUsers:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -130,7 +118,6 @@ const getUserById = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, user })
   } catch (error) {
-    console.error('❌ Error en getUserById:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -146,7 +133,6 @@ const updateUser = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, message: 'Usuario actualizado con éxito' })
   } catch (error) {
-    console.error('❌ Error en updateUser:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -162,7 +148,6 @@ const deleteUser = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, message: 'Usuario eliminado con éxito' })
   } catch (error) {
-    console.error('❌ Error en deleteUser:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }
@@ -181,7 +166,6 @@ const checkout = async (req, res) => {
     }
 
     const userId = req.user.usuario_id
-    console.log('Procesando checkout para el usuario:', userId)
 
     // Guardar la orden en la base de datos
     const orderResult = await sql.createOrder(userId, items, totalAmount)
@@ -192,7 +176,6 @@ const checkout = async (req, res) => {
 
     res.status(200).json({ status: true, code: 200, message: 'Orden procesada con éxito', orderId: orderResult.insertId })
   } catch (error) {
-    console.error('❌ Error en checkout:', error.message)
     res.status(500).json({ status: false, code: 500, message: error.message })
   }
 }

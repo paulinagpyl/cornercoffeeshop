@@ -14,7 +14,7 @@ const config = {
 const pool = new Pool(config)
 
 pool.connect()
-  .then(() => console.log('✅ Conexión exitosa a PostgreSQL'))
+  // .then(() => console.log('✅ Conexión exitosa a PostgreSQL'))
   .catch((err) => console.error('❌ Error de conexión:', err.message, err.code))
 
 const db = (query, values) => pool
