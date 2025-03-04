@@ -42,30 +42,34 @@ const CoffeeProvider = ({ children }) => {
       coffeeItem.count = 1
       setCart([...cart, coffeeItem])
     } else {
-      cart[foundCoffee].count++
-      setCart([...cart])
+      const updatedCart = [...cart]
+      updatedCart[foundCoffee].count++
+      setCart(updatedCart)
     }
   }
 
   const increaseCount = (id) => {
     const updateCart = cart.map((item) =>
-      item.id === id ? {...item,count:item.count +1} :item
+      item.id === id ? { ...item, count: item.count + 1 } : item
     )
     setCart(updateCart)
   }
 
   const decreaseCount = (id) => {
     const updatedCart = cart
-      .map((item) =>
-        item.id === id ? { ...item, count: item.count - 1 } : item
-      )
-      .filter((item) => item.count > 0); // Elimina productos con count = 0
+      .map((item) => (item.id === id ? { ...item, count: item.count - 1 } : item))
+      .filter((item) => item.count > 0) // Elimina productos con count = 0
     setCart(updatedCart)
   }
 
   const removeItem = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
+    const updatedCart = cart.filter((item) => item.id !== id)
     setCart(updatedCart)
+  }
+
+  // Nueva función para vaciar el carrito
+  const clearCart = () => {
+    setCart([])
   }
 
   const totalCart = cart.reduce((accum, { price, count }) => accum + price * count, 0)
@@ -78,16 +82,13 @@ const CoffeeProvider = ({ children }) => {
     decreaseCount,
     increaseCount,
     removeItem,
+    clearCart, // Añadido para que esté disponible en el contexto
     totalCart,
     getDeveloper: user,
     setDeveloper
   }
 
-  return (
-    <CoffeeContext.Provider value={globalState}>
-      {children}
-    </CoffeeContext.Provider>
-  )
+  return <CoffeeContext.Provider value={globalState}>{children}</CoffeeContext.Provider>
 }
 
 export default CoffeeProvider
