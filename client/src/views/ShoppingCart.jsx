@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CoffeeContext } from '../store/CoffeeContext'
 import { UserContext } from '../store/UserContext'
-import AlertDismissible from './AlertDismissible' // Asegúrate de que la ruta sea correcta
+import AlertDismissible from '../components/DismissAlert'
 
 const ShoppingCart = () => {
   const { cart, totalCart, decreaseCount, increaseCount, removeItem, clearCart } = useContext(CoffeeContext)
