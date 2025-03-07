@@ -4,11 +4,8 @@
 # npm install react-router-dom
 # npm install react-bootstrap
 
-render backend
-https://proyecto-back-rtxh.onrender.com
+Para ejecutarlo local es necesario generar un archivo de variables de entorno con el contenido que se indica
+// inicio .env
+VITE_URLBASE = http://localhost:3000
+// fin archivo.env
 
-render client
-https://proyecto-prueba-render-1.onrender.com
-
-render Postgres (External Database)
-postgresql://paulinagpyl:GzxpnAomqOwsJG6aImHKCLG6HJlmpoHD@dpg-cur8n0ij1k6c73c1qjlg-a.oregon-postgres.render.com/cafe_ejemplo
