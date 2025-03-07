@@ -32,7 +32,5 @@ Para ejecutar este proyecto, necesitarás agregar las siguientes variables de en
 
 
 ## Authors
-
-- [@rafariass](https://github.com/rafariass)
-
+Alvaro Riquelme, Paulina González, Dante Vasquez
 Nota: agregar .env en .gitignore del back al terminar
